@@ -7,3 +7,4 @@ description.workspace = true
 
 [dependencies]
 input_file_lib = { path = "../../libs/input_file_lib"}
+md-5 = "0.11.0"
