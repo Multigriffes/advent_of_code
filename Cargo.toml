@@ -1,0 +1,8 @@
+[workspace]
+members = ["solutions/*"]
+resolver = "3"
+
+[workspace.package]
+version = "0.1.0"
+authors = ["Jonas Tourvieille"]
+description = "My solutions in rust for advent of code"

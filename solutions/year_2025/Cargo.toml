@@ -1,0 +1,8 @@
+[package]
+name = "year_2025"
+edition = "2024"
+version.workspace = true
+authors.workspace = true
+description.workspace = true
+
+[dependencies]
