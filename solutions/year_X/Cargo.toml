@@ -1,5 +1,5 @@
 [package]
-name = "year_2024"
+name = "year_X"
 edition = "2024"
 version.workspace = true
 authors.workspace = true

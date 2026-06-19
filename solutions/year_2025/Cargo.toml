@@ -6,3 +6,4 @@ authors.workspace = true
 description.workspace = true
 
 [dependencies]
+input_file_lib = { path = "../../libs/input_file_lib"}
