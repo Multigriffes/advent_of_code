@@ -4,4 +4,5 @@
 - You can pass argument to the binarie ran by `cargo run` with `-- --option`
 - Learn git !
 - Watch out for `stack`. Overflow is fast with `array`. Better use `heap` type like `vec`.
+- Regex
 - more to come...
