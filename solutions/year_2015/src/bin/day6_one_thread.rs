@@ -26,21 +26,19 @@ fn main() -> Result<(), String> {
             continue;
         }
         match instruction[0] {
-            "turn" => {
-                match instruction[1] {
-                    "on" => {
-                        turn_on(&mut grid, &instruction[2], &instruction[4])
-                    },
-                    "off" => {
-                        turn_off(&mut grid, &instruction[2], &instruction[4])
-                    },
-                    _ => {continue;}
+            "turn" => match instruction[1] {
+                "on" => turn_on(&mut grid, &instruction[2], &instruction[4]),
+                "off" => turn_off(&mut grid, &instruction[2], &instruction[4]),
+                _ => {
+                    continue;
                 }
             },
             "toggle" => {
                 toggle(&mut grid, &instruction[1], &instruction[3]);
-            },
-            _ => {continue;}
+            }
+            _ => {
+                continue;
+            }
         }
     }
 
@@ -50,7 +48,7 @@ fn main() -> Result<(), String> {
         let line = grid[i].clone();
         handles.push(thread::spawn(|| count(line)));
     }
-    
+
     let mut count_light: u32 = 0;
     for handle in handles {
         count_light += handle.join().unwrap();
@@ -60,7 +58,6 @@ fn main() -> Result<(), String> {
 
     Ok(())
 }
-
 
 fn turn_on(grid: &mut Vec<Vec<bool>>, start: &str, end: &str) {
     //println!("Turn on");

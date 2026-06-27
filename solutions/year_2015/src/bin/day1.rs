@@ -23,8 +23,7 @@ fn main() -> Result<(), String> {
         counter += 1;
         if char == '(' {
             floor += 1;
-        }
-        else if char == ')' {
+        } else if char == ')' {
             floor -= 1;
         }
         if (floor == -1) & !first_bassement {

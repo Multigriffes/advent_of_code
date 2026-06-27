@@ -19,7 +19,7 @@ fn main() -> Result<(), String> {
         "--six" => {
             six_zeroes = true;
             file_path_index = 2;
-        },
+        }
         _ => {
             six_zeroes = false;
             file_path_index = 1;
@@ -48,8 +48,7 @@ fn main() -> Result<(), String> {
                 println!("{}", counter);
                 break;
             }
-        }else
-        if hash[..2] == [0, 0] {
+        } else if hash[..2] == [0, 0] {
             if hash[2] < 16 {
                 //println!("{:?}", hash);
                 println!("{}", counter);

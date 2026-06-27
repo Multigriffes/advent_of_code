@@ -21,7 +21,7 @@ fn main() -> Result<(), String> {
         "-r" => {
             condition = true;
             file_path_index = 2;
-        },
+        }
         _ => {
             condition = false;
             file_path_index = 1;
@@ -41,13 +41,13 @@ fn main() -> Result<(), String> {
                     counter += 1;
                 }
             }
-        },
+        }
         true => {
             for line in string_to_compute.lines() {
                 if is_nice_line_second(line) {
                     counter += 1;
                 }
-            }    
+            }
         }
     }
     println!("There is {} nice string", counter);
@@ -61,13 +61,13 @@ fn is_nice_line_first(line: &str) -> bool {
     let mut letter_twice: bool = false;
 
     let mut last_letter: char = '_';
-    
+
     for letter in line.chars() {
         let mut current_pair = String::new();
         current_pair.push(last_letter);
         current_pair.push(letter);
         for prohibited_pair in PROHIBITED_PAIRS {
-            if !has_prohibited_pair{
+            if !has_prohibited_pair {
                 has_prohibited_pair = prohibited_pair == current_pair.as_str();
             }
         }
@@ -81,7 +81,7 @@ fn is_nice_line_first(line: &str) -> bool {
                 vowels_counter += 1;
             }
         }
-        
+
         last_letter = letter;
     }
 
@@ -104,11 +104,12 @@ fn is_nice_line_second(line: &str) -> bool {
         current_pair.push(letter);
 
         if (current_pair != last_pair) | (current_pair == last_last_pair) {
-            pairs.entry(current_pair.clone())
+            pairs
+                .entry(current_pair.clone())
                 .and_modify(|x| *x += 1)
                 .or_insert(1);
         }
-        
+
         if !letter_twice {
             letter_twice = last_last_letter == letter;
         }
@@ -118,10 +119,8 @@ fn is_nice_line_second(line: &str) -> bool {
         last_last_pair = last_pair;
         last_pair = current_pair;
     }
-    
-    pair_twice = pairs.values()
-        .map(|x| *x > 1)
-        .fold(false, |acc, x| acc | x);
+
+    pair_twice = pairs.values().map(|x| *x > 1).fold(false, |acc, x| acc | x);
 
     pair_twice & letter_twice
 }

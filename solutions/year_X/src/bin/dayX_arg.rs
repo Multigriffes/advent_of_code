@@ -18,7 +18,7 @@ fn main() -> Result<(), String> {
         "--arg" => {
             condition = true;
             file_path_index = 2;
-        },
+        }
         _ => {
             condition = false;
             file_path_index = 1;

@@ -18,31 +18,28 @@ fn main() -> Result<(), String> {
     let mut total_surface: u32 = 0;
     let mut total_ribbon: u32 = 0;
     for line in string_to_compute.lines() {
-
         let dimensions: Vec<u32> = line
             .split('x')
             .map(|x| x.parse::<u32>())
-            .filter(|x| {
-                match x {
-                    Ok(_) => true,
-                    Err(_) => false,
-                }
+            .filter(|x| match x {
+                Ok(_) => true,
+                Err(_) => false,
             })
-            .map(|x| {
-                match x {
-                    Ok(number) => number,
-                    Err(_) => panic!("Prout !")
-                }
+            .map(|x| match x {
+                Ok(number) => number,
+                Err(_) => panic!("Prout !"),
             })
             .collect();
 
-        if dimensions.len() != 3 {continue;}
-        
+        if dimensions.len() != 3 {
+            continue;
+        }
+
         // Surface of wrapping paper
         let mut total_surface_this_present: u32 = 0;
         let mut min_surface: u32 = u32::MAX;
         for i in 0..3 {
-            let surface = dimensions[i] * dimensions[(i+1)%3];
+            let surface = dimensions[i] * dimensions[(i + 1) % 3];
             if surface < min_surface {
                 min_surface = surface;
             }
@@ -55,8 +52,8 @@ fn main() -> Result<(), String> {
         let bow_ribbon = dimensions.iter().fold(1, |acc, x| acc * x);
         let mut min_ribbon = u32::MAX;
         for i in 0..3 {
-            let perimeter = (dimensions[i] * 2) + (dimensions[(i+1)%3] * 2);
-            if perimeter < min_ribbon{
+            let perimeter = (dimensions[i] * 2) + (dimensions[(i + 1) % 3] * 2);
+            if perimeter < min_ribbon {
                 min_ribbon = perimeter
             }
         }

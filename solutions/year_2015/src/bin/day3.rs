@@ -13,21 +13,17 @@ fn main() -> Result<(), String> {
     }
 
     let robot_santa: bool;
-    let file_path_index: usize;// usize car le compilateur ne sait pas si une taille précise (u8) pourra être utilisé dans le vecteur dans la mesure où sa taille dépant du système
+    let file_path_index: usize; // usize car le compilateur ne sait pas si une taille précise (u8) pourra être utilisé dans le vecteur dans la mesure où sa taille dépant du système
     match args[1].as_str() {
         "-r" => {
             robot_santa = true;
             file_path_index = 2;
-        },
+        }
         _ => {
             robot_santa = false;
             file_path_index = 1;
         }
     }
-    
-    // usize car le compilateur ne sait pas si une taille précise (u8) pourra être utilisé dans le vecteur dans la mesure où sa taille dépant du système
-    let string_to_compute = get_file_content_to_string(&args[file_path_index])?;
-    let mut house_list: HashMap<[i32; 2], u8> = HashMap::new();
 
     // usize car le compilateur ne sait pas si une taille précise (u8) pourra être utilisé dans le vecteur dans la mesure où sa taille dépant du système
     let string_to_compute = match args[file_path_index].to_lowercase().as_str() {
@@ -44,40 +40,66 @@ fn main() -> Result<(), String> {
             '^' => {
                 if robot_santa & ((counter % 2) == 1) {
                     y_robot += 1;
-                    house_list.entry([x_robot, y_robot]).and_modify(|x| *x += 1).or_insert(1);
+                    house_list
+                        .entry([x_robot, y_robot])
+                        .and_modify(|x| *x += 1)
+                        .or_insert(1);
                 } else {
                     y_santa += 1;
-                    house_list.entry([x_santa, y_santa]).and_modify(|x| *x += 1).or_insert(1);
+                    house_list
+                        .entry([x_santa, y_santa])
+                        .and_modify(|x| *x += 1)
+                        .or_insert(1);
                 }
-            },
+            }
             'v' => {
                 if robot_santa & ((counter % 2) == 1) {
                     y_robot -= 1;
-                    house_list.entry([x_robot, y_robot]).and_modify(|x| *x += 1).or_insert(1);
+                    house_list
+                        .entry([x_robot, y_robot])
+                        .and_modify(|x| *x += 1)
+                        .or_insert(1);
                 } else {
                     y_santa -= 1;
-                    house_list.entry([x_santa, y_santa]).and_modify(|x| *x += 1).or_insert(1);
+                    house_list
+                        .entry([x_santa, y_santa])
+                        .and_modify(|x| *x += 1)
+                        .or_insert(1);
                 }
-            },
+            }
             '<' => {
                 if robot_santa & ((counter % 2) == 1) {
                     x_robot -= 1;
-                    house_list.entry([x_robot, y_robot]).and_modify(|x| *x += 1).or_insert(1);
+                    house_list
+                        .entry([x_robot, y_robot])
+                        .and_modify(|x| *x += 1)
+                        .or_insert(1);
                 } else {
                     x_santa -= 1;
-                    house_list.entry([x_santa, y_santa]).and_modify(|x| *x += 1).or_insert(1);
+                    house_list
+                        .entry([x_santa, y_santa])
+                        .and_modify(|x| *x += 1)
+                        .or_insert(1);
                 }
-            },
+            }
             '>' => {
                 if robot_santa & ((counter % 2) == 1) {
                     x_robot += 1;
-                    house_list.entry([x_robot, y_robot]).and_modify(|x| *x += 1).or_insert(1);
+                    house_list
+                        .entry([x_robot, y_robot])
+                        .and_modify(|x| *x += 1)
+                        .or_insert(1);
                 } else {
                     x_santa += 1;
-                    house_list.entry([x_santa, y_santa]).and_modify(|x| *x += 1).or_insert(1);
+                    house_list
+                        .entry([x_santa, y_santa])
+                        .and_modify(|x| *x += 1)
+                        .or_insert(1);
                 }
-            },
-            _ => {continue;}
+            }
+            _ => {
+                continue;
+            }
         }
         counter += 1;
     }
