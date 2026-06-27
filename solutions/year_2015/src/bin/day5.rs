@@ -1,16 +1,18 @@
-use std::{collections::HashMap, env, error::Error};
+use std::{collections::HashMap, env};
 
 use input_file_lib::get_file_content_to_string;
 
 const VOWELS: [char; 5] = ['a', 'e', 'i', 'o', 'u'];
 const PROHIBITED_PAIRS: [&str; 4] = ["ab", "cd", "pq", "xy"];
 
-fn main() -> Result<(), Box<dyn Error>> {
+fn main() -> Result<(), String> {
+    let default_path: String = String::from("./solutions/year_2015/src/input/day5.txt");
     let args: Vec<String> = env::args().collect();
     if (args.len() < 2) | (args.len() > 3) {
         println!("Usage: day5 [option] <input_file>");
         println!("Options: -r for the second set of rule");
-	    std::process::exit(1);
+        println!("input_file could be 'x' or 'default' for the default one");
+        std::process::exit(1);
     }
 
     let condition: bool;
@@ -25,8 +27,11 @@ fn main() -> Result<(), Box<dyn Error>> {
             file_path_index = 1;
         }
     }
-    
-    let string_to_compute = get_file_content_to_string(&args[file_path_index])?;
+
+    let string_to_compute = match args[file_path_index].to_lowercase().as_str() {
+        "x" | "default" => get_file_content_to_string(&default_path)?,
+        _ => get_file_content_to_string(&args[file_path_index])?,
+    };
 
     let mut counter: u32 = 0;
     match condition {
