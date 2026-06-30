@@ -5,4 +5,5 @@
 - Learn git !
 - Watch out for `stack`. Overflow is fast with `array`. Better use `heap` type like `vec`.
 - Regex
+- Cheating with `Cell` and `RefCell`
 - more to come...
